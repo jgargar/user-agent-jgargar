@@ -8,6 +8,7 @@ def index(request):
 
 def info(request):
     user_agent = get_user_agent(request)
+    # Para saber desde que tipo de dispositivo lo esta usando
     if user_agent.is_mobile:
         tipo = 'Movil'
     elif user_agent.is_tablet:
@@ -16,9 +17,10 @@ def info(request):
         tipo = 'PC'
     elif user_agent.is_bot:
         tipo = 'Bot'
+    # Para saber si el dispositivo es tactil
     esTactil = "Si" if user_agent.is_touch_capable else "No"
-    hostname = socket.gethostname()  # Obtengo
-    ip_address = socket.gethostbyname(hostname)
+    hostname = socket.gethostname()  # Obtener el nombre del dispositivo
+    ip_address = socket.gethostbyname(hostname)  # Obtener la ip del user
     return render(request, 'app/info.html', {
         'nombrehost': hostname, 'ipcliente': ip_address, 'tactil': esTactil, 'device': tipo
     })
