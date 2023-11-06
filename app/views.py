@@ -17,6 +17,8 @@ def info(request):
         tipo = 'PC'
     elif user_agent.is_bot:
         tipo = 'Bot'
+    else:
+        tipo = 'Unknown'
     # Para saber si el dispositivo es tactil
     esTactil = "Si" if user_agent.is_touch_capable else "No"
     hostname = socket.gethostname()  # Obtener el nombre del dispositivo
